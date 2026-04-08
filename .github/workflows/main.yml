@@ -1,0 +1,26 @@
+name: Saham Scraper Daily
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Berjalan setiap jam 09:00 WITA (Baubau)
+  workflow_dispatch: # Memungkinkan Anda menjalankan tes secara manual
+
+jobs:
+  scrape_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Run Scraper
+        run: python src/scraper.py
