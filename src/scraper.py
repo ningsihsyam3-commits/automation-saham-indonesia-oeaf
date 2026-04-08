@@ -3,7 +3,7 @@ from datetime import datetime
 from playwright.sync_api import sync_playwright
 
 # Masukkan URL Web App Google Apps Script Anda di sini
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwzIjQNvg6mtQShR2bTlJcSZhi7Ocmf9gTdVPrmf91WqZMOkhu__3MPY-Gv0xsdJgoNWw/exec"
+WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxx1aaTeg2vnKm8COkSvmj1i02ACRSw0P4VyIQ5pkcHdkcW45LGwE39bVsBMF-dTIy0eQ/exec"
 
 def scrape_saham():
     with sync_playwright() as p:
