@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 # URL Web App Google Apps Script Anda
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw8-15rcSs_-h9aSb-rhLBAnWBoYPDhyNCrlAmFz-yeoYyma_yRcQuhmC_MCh1FVlA70g/exec"
+WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxAI_xbbAIp8WmFkbOpaH0m8KasLr3IT9aBRA3gwV-hSKL2eZnZQJdH0dJlWasMKr-9Bg/exec"
 
 def get_real_stock_data():
     # Daftar ticker (Yahoo Finance menggunakan akhiran .JK untuk saham Indonesia)
