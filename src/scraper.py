@@ -1,25 +1,34 @@
 import requests
 from datetime import datetime
 
-# Pastikan URL ini adalah URL Web App yang berakhiran /exec
+# URL Web App Anda
 WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxx1aaTeg2vnKm8COkSvmj1i02ACRSw0P4VyIQ5pkcHdkcW45LGwE39bVsBMF-dTIy0eQ/exec"
 
-def get_stock_data():
-    # Simulasi pengambilan data (Nanti bisa dikembangkan dengan Playwright)
-    # Untuk sekarang kita pastikan alur datanya benar dulu
-    return {
-        "ticker": "BBRI",
-        "price": 5250,
-        "change": "+1.2%",
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    }
+def get_multiple_stocks():
+    # Daftar saham yang ingin dipantau
+    tickers = ["BBRI", "BMRI", "BBNI", "TLKM"]
+    all_data = []
+    
+    for ticker in tickers:
+        # Di sini nantinya Anda masukkan kode scraping asli (Playwright/BeautifulSoup)
+        # Untuk sekarang, kita gunakan data simulasi agar alur sistem teruji
+        stock_info = {
+            "ticker": ticker,
+            "price": 5000, # Ganti dengan hasil scraping
+            "change": "+1.0%",
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        all_data.append(stock_info)
+    
+    return all_data
 
 def send_to_sheets():
-    data = get_stock_data()
+    stocks_data = get_multiple_stocks()
     try:
-        response = requests.post(WEB_APP_URL, json=data, timeout=30)
+        # Kita kirim seluruh list (all_data) dalam satu kali request POST
+        response = requests.post(WEB_APP_URL, json=stocks_data, timeout=30)
         if response.status_code == 200:
-            print(f"✅ Berhasil! Data {data['ticker']} terkirim.")
+            print(f"✅ Berhasil! {len(stocks_data)} data saham terkirim.")
     except Exception as e:
         print(f"❌ Gagal: {e}")
 
