@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 # URL Web App Anda
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxx1aaTeg2vnKm8COkSvmj1i02ACRSw0P4VyIQ5pkcHdkcW45LGwE39bVsBMF-dTIy0eQ/exec"
+WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw8-15rcSs_-h9aSb-rhLBAnWBoYPDhyNCrlAmFz-yeoYyma_yRcQuhmC_MCh1FVlA70g/exec"
 
 def get_multiple_stocks():
     # Daftar saham yang ingin dipantau
