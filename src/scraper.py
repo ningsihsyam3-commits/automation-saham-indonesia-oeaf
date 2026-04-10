@@ -6,9 +6,10 @@ from datetime import datetime
 WEB_APP_URL = "https://script.google.com/macros/s/AKfycbztJqJU9w-ACgRj61cqboiq-OmO-BbEBjcmG6Ji7vTcBuiuy7lK8tRnH5Nq0XxAED5AtQ/exec"
 
 def get_real_stock_data():
-    # Menambah TLKM dan ASII ke dalam daftar
     tickers = ["BBRI.JK", "BMRI.JK", "BBNI.JK", "TLKM.JK", "ASII.JK"]
     all_data = []
+    
+    print(f"Memulai pengambilan data untuk {len(tickers)} saham...")
     
     for symbol in tickers:
         try:
@@ -16,15 +17,24 @@ def get_real_stock_data():
             info = stock.fast_info
             clean_name = symbol.replace(".JK", "")
             
-            data = {
-                "ticker": clean_name,
-                "price": round(info.last_price, 2),
-                "change": f"{round(info.year_change * 100, 2)}%",
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-            all_data.append(data)
+            # Ambil harga terakhir
+            price = info.last_price
+            
+            # Jika harga valid (bukan None atau 0)
+            if price:
+                data = {
+                    "ticker": clean_name,
+                    "price": round(price, 2),
+                    "change": "0%", # Placeholder
+                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                all_data.append(data)
+                print(f"✅ Berhasil: {clean_name} - Rp{price}")
+            else:
+                print(f"⚠️ Peringatan: {clean_name} memberikan harga kosong.")
+                
         except Exception as e:
-            print(f"❌ Gagal mengambil {symbol}: {e}")
+            print(f"❌ Gagal pada {symbol}: {e}")
             
     return all_data
 
