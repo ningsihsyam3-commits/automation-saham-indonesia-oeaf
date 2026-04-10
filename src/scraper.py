@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 # URL Web App Google Apps Script Anda
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxOUZ5SNQDY4el8cHaMUyhSACDXMn2D5GjyWDRKZkyBMlAYEs_-ydmcJ-Jv-eX85cQHDw/exec"
+WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzzM294HOgy2nRXp4ukT5U6xR3MIRZ-Jmp17tu1l86mM05KiN6B2J7DOfjiVuknA9Zbug/exec"
 
 def get_real_stock_data():
     tickers = ["BBRI.JK", "BMRI.JK", "BBNI.JK", "TLKM.JK", "ASII.JK"]
