@@ -6,29 +6,23 @@ from datetime import datetime
 WEB_APP_URL = "https://script.google.com/macros/s/AKfycbztJqJU9w-ACgRj61cqboiq-OmO-BbEBjcmG6Ji7vTcBuiuy7lK8tRnH5Nq0XxAED5AtQ/exec"
 
 def get_real_stock_data():
-    # Daftar ticker (Yahoo Finance menggunakan akhiran .JK untuk saham Indonesia)
-    tickers = ["BBRI.JK", "BMRI.JK", "BBNI.JK"]
+    # Menambah TLKM dan ASII ke dalam daftar
+    tickers = ["BBRI.JK", "BMRI.JK", "BBNI.JK", "TLKM.JK", "ASII.JK"]
     all_data = []
     
     for symbol in tickers:
         try:
-            # Mengambil data ticker
             stock = yf.Ticker(symbol)
-            # 'fast_info' memberikan akses cepat ke harga terakhir dan perubahan
             info = stock.fast_info
-            
-            # Membersihkan nama ticker untuk tampilan di Sheets (menghapus .JK)
             clean_name = symbol.replace(".JK", "")
             
             data = {
                 "ticker": clean_name,
                 "price": round(info.last_price, 2),
-                "change": f"{round(info.year_change * 100, 2)}%", # Contoh perubahan
+                "change": f"{round(info.year_change * 100, 2)}%",
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
             all_data.append(data)
-            print(f"✅ Berhasil mengambil data: {clean_name}")
-            
         except Exception as e:
             print(f"❌ Gagal mengambil {symbol}: {e}")
             
